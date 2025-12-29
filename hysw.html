@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海洋生物图鉴</title>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/hysw.css">
+    <link rel="shortcut icon" href="tubiao1.ico">
+</head>
+
+<body>
+    <div class="header_f w">
+        <div class="logo_f"><a href="#"><img src="images/tubiao1.jpg" alt="Logo"></a></div>
+        <div class="index3 index"><a href="index.html" style="color: #006994;">返回首页</a></div>
+        <div class="poetry">
+            <div>
+                <p>
+                    海阔凭鱼跃，天高任鸟飞。<br>
+                    百川东到海，何时复西归。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="describe1">
+        <p>海洋是地球上最广阔的水体，覆盖了地球表面的71%。它是生命的摇篮，孕育了无数奇妙的生物。从随波逐流的微小浮游生物，到遨游大洋的巨型鲸类，再到固着海底的珊瑚海草，海洋生物构建了一个复杂而精妙的生态系统。探索这些生物的奥秘，不仅能让我们领略自然之美，更能唤起我们保护蓝色家园的意识。
+        </p>
+    </div>
+
+    <div class="tradition">
+        <div class="contain">
+            <div class="sub_title1"><img src="images/1.jpg" alt="海洋Banner"></div>
+            <div class="add"></div>
+            <h1>海洋生物生态类群</h1>
+        </div>
+    </div>
+
+    <div class="tab-chun">
+        <div class="tab_list_chun">
+            <ul>
+                <li class="current">浮游生物 (Plankton)</li>
+                <li>游泳生物 (Nekton)</li>
+                <li>底栖生物 (Benthos)</li>
+            </ul>
+        </div>
+        
+        <div class="tab_con">
+            <div class="item-chun" style="display: block">
+                <div class="pic-chun1"><img src="images/23.jpg" alt="浮游生物"></div>
+                <h3>特点：</h3>
+                <p>不能主动逆流游动，随海水漂流，数量巨大，是海洋食物网的基础。它们虽小，却是海洋生态系统的基石。</p>
+                <h3>主要包括：</h3>
+                <ul>
+                    <li><strong>浮游植物：</strong>硅藻、甲藻、蓝藻等，它们通过光合作用负责大量初级生产，是海洋的“草地”。</li>
+                    <li><strong>浮游动物：</strong>桡足类、磷虾、浮游幼体等，它们以浮游植物为食，是鱼类等大型动物的重要饵料。</li>
+                    <li><strong>浮游菌类：</strong>细菌和古菌，它们极其微小，但在分解有机物、参与物质循环中起着关键作用。</li>
+                </ul>
+            </div>
+
+            <div class=" item-chun">
+                <div class="pic-chun2"><img src="images/s16.jpg" alt="游泳生物"></div>
+                <h3>特点：</h3>
+                <p>能够主动游动、逆流而上，具有发达的运动器官，多为高等动物。它们是海洋中视觉上最引人注目的群体。</p>
+                <h3>主要包括：</h3>
+                <ul>
+                    <li><strong>鱼类：</strong>种类繁多，包括鲨鱼、金枪鱼、鳕鱼等，形态各异，适应不同水层。</li>
+                    <li><strong>海洋哺乳类：</strong>如鲸、海豚、海豹等，它们用肺呼吸，胎生哺乳，智商通常较高。</li>
+                    <li><strong>海龟：</strong>古老的爬行动物，在大洋中迁徙，回沙滩产卵。</li>
+                    <li><strong>头足类：</strong>鱿鱼、章鱼等，具有喷水推进能力，是无脊椎动物中的游泳高手。</li>
+                    <li><strong>大型甲壳类：</strong>部分虾、蟹等也具备较强的游泳能力。</li>
+                </ul>
+            </div>
+
+            <div class="item-chun">
+                <div class="pic-chun3"><img src="images/8.jpg" alt="底栖生物"></div>
+                <h3>特点：</h3>
+                <p>生活在海底或附着在海底，活动能力弱或固着不动。它们构成了丰富多彩的海底景观。</p>
+                <h3>主要包括：</h3>
+                <ul>
+                    <li><strong>棘皮动物：</strong>海星、海胆、海参等，仅生活在海洋中。</li>
+                    <li><strong>贝类：</strong>牡蛎、扇贝、蛤蜊等，多有坚硬的外壳保护。</li>
+                    <li><strong>固着生物：</strong>珊瑚、海绵，它们像植物一样固定在海底，为其他生物提供栖息地。</li>
+                    <li><strong>多毛类：</strong>如沙蚕，生活在泥沙中。</li>
+                    <li><strong>海藻：</strong>大型藻类如海带、裙带菜，是海底森林的重要组成部分。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // JS 逻辑保持不变
+        var tab_list_chun = document.querySelector('.tab_list_chun');
+        var lis_chun = tab_list_chun.querySelectorAll('li');
+        var items_chun = document.querySelectorAll('.item-chun');
+        
+        for (var i = 0; i < lis_chun.length; i++) {
+            lis_chun[i].setAttribute('index', i);
+            lis_chun[i].onclick = function () {
+                for (var i = 0; i < lis_chun.length; i++) {
+                    lis_chun[i].className = '';
+                }
+                this.className = 'current';
+                var index = this.getAttribute('index');
+                for (var i = 0; i < items_chun.length; i++) {
+                    items_chun[i].style.display = 'none';
+                }
+                items_chun[index].style.display = 'block';
+            }
+        }
+    </script>
+
+    <div class="food">
+        <div class="contain">
+            <div class="sub_title2"><img src="images/2.jpg" alt="海洋Banner2"></div>
+            <div class="add"></div>
+            <h1>生物详细介绍</h1>
+        </div>
+    </div>
+
+   <div class="food-con">
+        <ul class="w">
+            
+            <li>
+                <div class="card-img-box">
+                    <img src="images/s6.jpg" alt="小丑鱼全景" class="card-img-main">
+                    <img src="images/s7.jpg" alt="小丑鱼特写" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>共生舞者：小丑鱼</h2>
+                    <p>小丑鱼因脸上的白色条纹像京剧丑角而得名。它们天生对海葵毒素免疫，能安全地穿梭于海葵触手之间。这种奇妙的“房客”关系，既保护了自己，也帮海葵清理了食物残渣。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/s9.jpg" alt="鲽鱼" class="card-img-main">
+                    <img src="images/s8.jpg" alt="鲽鱼特写" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>珊瑚伴侣：鲽鱼</h2>
+                    <p>鲽鱼（蝴蝶鱼）拥有扁平的身体和艳丽的色彩，能在复杂的珊瑚礁缝隙中灵活穿梭。它们通常成双成对出现，是海底公认的“模范夫妻”，长长的嘴巴专吃岩缝里的小生物。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/s11.jpg" alt="刺豚" class="card-img-main">
+                    <img src="images/s10.jpg" alt="刺豚膨胀" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>防御大师：刺豚</h2>
+                    <p>平时看起来呆萌可爱，一旦生气或遇到危险，它会瞬间吞入大量海水，身体像气球一样鼓起，全身的硬刺竖立，变成一个让捕食者无从下口的“大刺球”。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/s2.jpg" alt="大白鲨" class="card-img-main">
+                    <img src="images/s3.jpg" alt="大白鲨牙齿" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>海洋霸主：大白鲨</h2>
+                    <p>作为海洋顶级的掠食者，大白鲨拥有极其敏锐的嗅觉，能嗅出数公里外的一滴血。它们一生都在不断换牙，确保每一口撕咬都致命而高效，是完美的狩猎机器。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/s5.jpg" alt="蓝鲸" class="card-img-main">
+                    <img src="images/s19.jpg" alt="蓝鲸喷水" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>温柔巨兽：蓝鲸</h2>
+                    <p>地球上已知体积最大的动物，舌头重达2.7吨。虽然体型庞大，却性情温顺，主要以微小的磷虾为食。它们发出的低频声音能传播几百公里，是孤独的深海歌者。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/s12.jpg" alt="抹香鲸" class="card-img-main">
+                    <img src="images/s20.jpg" alt="抹香鲸深潜" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>深潜冠军：抹香鲸</h2>
+                    <p>抹香鲸头部巨大的鲸脑油不仅是珍贵的资源，更是调节浮力的神器。它们能屏气90分钟，潜入2000米的深海，与巨大的大王乌贼进行惊心动魄的搏斗。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/s14.jpg" alt="灯笼鱼" class="card-img-main">
+                    <img src="images/s21.jpg" alt="发光诱饵" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>深海诱惑：灯笼鱼</h2>
+                    <p>生活在漆黑的深海，头顶自带一盏“小灯笼”（发光器）。这是致命的诱饵，在黑暗中吸引好奇的小鱼小虾靠近，然后瞬间张开大嘴，将其一口吞下。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/14.jpg" alt="珊瑚礁" class="card-img-main">
+                    <img src="images/11.jpg" alt="珊瑚虫特写" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>海底森林：珊瑚</h2>
+                    <p>看着像植物，其实是无数微小的“珊瑚虫”动物聚积而成的。它们分泌骨骼构建了绚丽的珊瑚礁，为四分之一的海洋生物提供了家园，被誉为“海洋热带雨林”。</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="card-img-box">
+                    <img src="images/21.jpg" alt="海草床" class="card-img-main">
+                    <img src="images/22.jpg" alt="海龟吃海草" class="card-img-sub">
+                </div>
+                <div class="card-text">
+                    <h2>海底草原：海草</h2>
+                    <p>唯一一类完全生活在海水中的开花植物。连绵的海草床不仅是海龟和儒艮的食堂，更是高效的“固碳工厂”，在减缓全球变暖中发挥着不可忽视的作用。</p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    </body>
+
+</html>

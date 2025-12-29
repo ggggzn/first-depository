@@ -1,0 +1,162 @@
+﻿/* --- 1. 基础重置 (Reset) --- */
+/*清除元素默认的内外边距  */
+* {
+    margin: 0;
+    padding: 0
+}
+/*让所有斜体 不倾斜*/
+em,
+i {
+    font-style: normal;
+}
+/*去掉列表前面的小点*/
+li {
+    list-style: none;
+}
+/*图片没有边框   去掉图片底侧的空白缝隙*/
+img {
+    border: 0;  /*ie6*/
+    vertical-align: middle;
+}
+/*让button 按钮 变成小手*/
+button {
+    cursor: pointer;
+}
+/*取消链接的下划线*/
+a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease; /* 添加过渡效果，让颜色变化更柔和 */
+}
+
+/* 【修改点1】鼠标悬停颜色：从红色 (#e33333) 改为 海洋蓝 (#006994) */
+a:hover {
+    color: #006994;
+}
+
+button,
+input {
+    font-family: 'Microsoft YaHei', 'Heiti SC', tahoma, arial, 'Hiragino Sans GB', \5B8B\4F53, sans-serif;
+    /*取消轮廓线 蓝色的*/
+    outline: none;
+}
+
+body {
+    background-color: #fff;
+    font: 12px/1.5 'Microsoft YaHei', 'Heiti SC', tahoma, arial, 'Hiragino Sans GB', \5B8B\4F53, sans-serif;
+    color: #666
+}
+
+.hide,
+.none {
+    display: none;
+}
+/*清除浮动*/
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: ".";
+    height: 0
+}
+
+.clearfix {
+    *zoom: 1
+}
+
+/* --- 2. 公共布局与组件 (Common) --- */
+
+/* 版心 - Wrapper */
+.w {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* 全局文字样式 (标题与段落) */
+h1 {
+    text-align: center;
+    margin: 100px 0;
+    font-weight: normal;
+    color: #333;
+    font-size: 32px;
+}
+
+p {
+    font-size: 16px;
+    text-align: justify; /* 两端对齐 */
+}
+
+/* 子页面通用的“返回首页”按钮 */
+.index {
+    position: absolute;
+    top: 75px;
+    left: 100px;
+}
+
+.index1 a {
+    font-size: 16px;
+    color: goldenrod;
+}
+
+.index2 a {
+    font-size: 16px;
+    color: green;
+}
+
+/* 【修改点2】返回首页按钮颜色：从红色 (#c81623) 改为 海洋蓝 (#006994) */
+/* 这样页面右上角的“返回首页”就会变成蓝色，不需要在HTML里写行内样式了 */
+.index3 a {
+    font-size: 16px;
+    color: #006994;
+    font-weight: bold;
+}
+
+/* 底部通用视频/资讯列表样式 */
+.msg {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.msg li {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    /* 增加一个小圆角和过渡，让列表更精致 */
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.msg li:last-child {
+    margin-bottom: 0px;
+}
+
+/* 鼠标悬停在列表项时的背景反馈 */
+.msg li:hover {
+    background-color: rgba(0, 105, 148, 0.05);
+}
+
+.msg a {
+    font-size: 18px;
+    line-height: 106px;
+    margin-left: 8px;
+    display: inline-block; /* 修复点击区域 */
+    vertical-align: top;
+}
+
+.msg p {
+    font-size: 15px;
+}
+
+.pic {
+    float: left;
+}
+
+.pic img {
+    width: 170px;
+    border-radius: 4px;
+    height: 106px;
+    object-fit: cover; /* 防止缩略图变形 */
+}
+
+.box {
+    /* 通用容器占位 */
+}

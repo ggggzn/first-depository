@@ -1,0 +1,412 @@
+/* =========================================
+   海洋保护页专用样式 (Protect Ocean - Enhanced)
+   ========================================= */
+
+/* 1. Header 微调 */
+/* 1. Header 微调 */
+.header1 {
+    position: relative;
+    
+    /* 【修改点】去掉绿色的底边框 */
+    border-bottom: none;
+    
+    height: 100px;
+    background: #fff;
+    z-index: 100;
+}
+.header1 .logo1 { float: left; width: 100px; height: 100px; }
+.header1 .logo1 img { width: 100%; height: 100%; border-radius: 50%; }
+.header1 .poetry div { position: absolute; top: 40px; left: 900px; }
+.header1 .poetry p { font-size: 16px; color: #2e7d32; font-family: 'KaiTi'; font-weight: bold; }
+
+/* 2. Hero Banner */
+.protect-hero {
+    height: 600px; /* 增加高度 */
+    background: url('../images/27.jpg') center/cover no-repeat;
+    position: relative;
+}
+
+.hero-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+/* 找到 .hero-content h1 并替换为以下内容 */
+.hero-content h1 {
+    font-size: 60px;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 5px;
+    
+    /* 【修改点】强制纯白，并增加白色外发光，让文字更亮眼 */
+    color: #ffffff; 
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 5px 15px rgba(0,0,0,0.8);
+}
+
+/* 顺便把下面的副标题也提亮一点 */
+.hero-content .subtitle {
+    font-size: 28px;
+    font-weight: 300;
+    margin-top: 15px;
+    text-transform: uppercase;
+    
+    /* 【修改点】改用更亮的荧光青色 */
+    color: #69f0ae; 
+    text-shadow: 0 0 10px rgba(105, 240, 174, 0.3);
+}
+
+.hero-content .divider {
+    width: 100px;
+    height: 4px;
+    background: #fff;
+    margin: 30px auto;
+}
+
+.hero-content .desc {
+    font-size: 20px;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'KaiTi';
+}
+
+/* 3. 核心危机：翻转卡片 (Flip Cards) */
+.crisis-section {
+    padding: 100px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+.section-header h2 { font-size: 40px; color: #333; margin-bottom: 15px; font-weight: bold; }
+.section-header p { font-size: 18px; color: #666; }
+
+.flip-grid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 32%;
+    height: 480px; /* 增加高度以容纳更多文字 */
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border-radius: 15px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* 正面 */
+.flip-card-front { background-color: #fff; }
+.flip-card-front img {
+    width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85);
+}
+.front-text {
+    position: absolute; bottom: 30px; left: 25px; text-align: left; color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
+.front-text h3 { font-size: 32px; margin: 0; }
+.front-text p { font-size: 18px; margin-top: 5px; opacity: 0.9; }
+
+/* 背面 (文字排版优化) */
+.flip-card-back {
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 30px;
+    box-sizing: border-box;
+    text-align: left; /* 文字左对齐更易阅读 */
+}
+
+.back-plastic { background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%); }
+.back-warming { background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%); }
+.back-fishing { background: linear-gradient(135deg, #2c3e50 0%, #000000 100%); }
+
+.flip-card-back h3 { font-size: 24px; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; width: 100%; text-align: center;}
+.flip-card-back p { font-size: 14px; line-height: 1.7; margin-bottom: 15px; }
+.flip-card-back .stat {
+    font-size: 13px;
+    color: #fff176;
+    font-weight: bold;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: auto; /* 底部对齐 */
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* 4. 【新增】沉默的受害者 (图文交替) */
+.victims-section {
+    background-color: #f9f9f9;
+    padding: 100px 0;
+}
+
+.section-title-dark {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 60px;
+    font-weight: bold;
+}
+
+.story-row {
+    margin-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.story-row:last-child { margin-bottom: 0; }
+
+.story-img {
+    width: 550px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+.story-row:hover .story-img img { transform: scale(1.05); }
+
+.story-text {
+    width: 600px;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.story-text h3 {
+    font-size: 26px;
+    color: #1565c0; /* 深蓝色标题 */
+    margin-bottom: 20px;
+    border-left: 5px solid #1565c0;
+    padding-left: 15px;
+}
+
+.story-text p {
+    font-size: 16px;
+    line-height: 2;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* 浮动辅助 */
+.left { float: left; }
+.right { float: right; }
+.clearfix:after { content: ""; display: block; clear: both; }
+
+
+/* =========================================
+   5. 蓝碳科普 (Blue Carbon) - 数字水印风格
+   ========================================= */
+.science-section {
+    background: linear-gradient(135deg, #0288d1 0%, #26c6da 100%);
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.science-section h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.science-section .intro {
+    font-size: 18px;
+    opacity: 0.95;
+    margin-bottom: 70px;
+    line-height: 1.8;
+}
+
+.science-grid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.science-card {
+    position: relative; /* 为绝对定位的数字做基准 */
+    background: rgba(255,255,255,0.1);
+    width: 32%; /* 稍微加宽一点 */
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    overflow: hidden; /* 防止水印溢出 */
+}
+
+.science-card:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 151, 167, 0.2);
+}
+
+/* 数字水印样式 (01, 02, 03) */
+.card-num {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 80px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.15); /* 半透明水印 */
+    font-family: 'Impact', sans-serif;
+    z-index: 0; /* 在最底层 */
+}
+
+.science-card h4 {
+    position: relative; /* 提至上层 */
+    z-index: 1;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.science-card p {
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 1;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+/* 详细描述的样式 */
+.science-card .detail {
+    font-size: 13px;
+    opacity: 0.9;
+    color: #e0f7fa;
+    border-top: 1px dashed rgba(255,255,255,0.2);
+    padding-top: 10px;
+}
+
+
+/* =========================================
+   6. 行动倡议 (Action) - 纯净排版
+   ========================================= */
+.action-section {
+    background-color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.action-section h2 {
+    font-size: 36px;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+.action-desc {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 60px;
+}
+
+.action-grid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-item {
+    width: 23%;
+    background: #f9fbe7; /* 极淡的嫩绿色背景 */
+    padding: 30px 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    border: 1px solid #e0e0e0;
+}
+
+.action-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(46, 125, 50, 0.1);
+    border-color: #2e7d32;
+    background: #fff;
+}
+
+/* 标题样式：带一个小色块装饰 */
+.act-title {
+    font-size: 20px;
+    color: #2e7d32;
+    margin-bottom: 15px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+}
+.act-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #a5d6a7;
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+.action-item p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+    text-align: justify; /* 两端对齐，看起来更整齐 */
+}
+/* 7. 底部呼吁 (修复居中问题版) */
+.footer-callout {
+    background: #2e7d32;
+    color: #fff;
+    /* 给父容器设置居中，确保里面行内元素居中 */
+    text-align: center; 
+    padding: 30px 0; 
+}
+
+.footer-callout p { 
+    /* 【关键修改】强制将文字改为居中，覆盖 base.css 里的 justify */
+    text-align: center !important; 
+    
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    margin: 0 auto; /* 确保块级元素本身也居中（虽然P默认占满一行） */
+    max-width: 800px; /* 防止在超宽屏幕上单行太长 */
+}

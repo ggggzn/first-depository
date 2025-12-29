@@ -1,0 +1,284 @@
+/* --- 基础设置 --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000; /* 默认黑色底 */
+}
+
+/* --- 海洋背景 (极高，带渐变) --- */
+body {
+    height: 8500px; /* 总深度 */
+    background: linear-gradient(to bottom, 
+        #4facfe 0%,     /* 0m 浅海蓝 */
+        #00f2fe 5%,    /* 400m 绿松石 */
+        #005bea 20%,    /* 1600m 深蓝 */
+        #021b79 40%,    /* 3200m 午夜蓝 */
+        #000000 70%,    /* 5600m 纯黑 */
+        #000000 100%
+    );
+    position: relative;
+}
+
+/* --- 探照灯遮罩 --- */
+.shadow-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 90; /* 在鱼之上，潜水艇之下 */
+    pointer-events: none;
+    background: radial-gradient(
+        circle at center, 
+        transparent 150px,       /* 可视半径 */
+        rgba(0, 0, 30, 0.5) 300px, 
+        rgba(0, 0, 0, 0.98) 100%
+    );
+}
+
+/* --- 潜水艇主角 --- */
+#submarine {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px; 
+    z-index: 100; /* 最高层级 */
+    /* 自发光，确保深海可见 */
+    filter: drop-shadow(0 0 20px rgba(255, 255, 220, 0.5));
+    transition: transform 0.2s ease-out;
+}
+
+/* --- 深度计 UI --- */
+.ui-layer {
+    position: fixed;
+    top: 30px; right: 30px;
+    z-index: 200;
+}
+#depth-gauge {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* --- 海洋生物容器 --- */
+.fish-item {
+    position: absolute;
+    transition: transform 0.1s linear;
+    /* 默认在遮罩之下 */
+    z-index: 50;
+}
+/* 确保海草在前景，盖住其他鱼 */
+.fish-item img {
+    display: block; /* 防止图片底部留白 */
+}
+
+
+.text-label {
+    color: white;
+    font-size: 18px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    border-left: 4px solid #00f2fe;
+    padding-left: 15px;
+    text-transform: uppercase;
+}
+
+/* --- 深海发光生物特效 (给灯笼鱼用) --- */
+.glowing-fish img {
+    /* 强烈的荧光效果 */
+    filter: drop-shadow(0 0 25px #00ffcc) brightness(1.3);
+    animation: pulse 4s infinite alternate ease-in-out;
+}
+
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 15px #00ffcc) brightness(1.1); }
+    100% { filter: drop-shadow(0 0 40px #00ffcc) brightness(1.5); }
+}
+
+/* --- CSS 气泡样式 (无需图片) --- */
+.bubble {
+    position: absolute;
+    /* 调整透明度：从0.8降到0.3 */
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    border-radius: 50%;
+    /* 边框光泽也调淡 */
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+    bottom: -100px;
+    animation: rise 8s infinite linear;
+    pointer-events: none;
+    z-index: 120; 
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    /* 上升过程中最高不透明度从 0.8 降到 0.4 */
+    20% { opacity: 0.4; }
+    100% {
+        transform: translateY(-2500px) translateX(100px);
+        opacity: 0;
+    }
+}
+/* --- 浅海鱼群样式 --- */
+#school-of-fish {
+    position: absolute;
+    /* 鱼群的大概中心位置，你可以改这里调整鱼群在哪 */
+    top: 400px; 
+    left: 10%; 
+    width: 80%; /* 容器宽度 */
+    height: 600px;
+    z-index: 60;
+    pointer-events: none; /* 容器本身不挡鼠标 */
+}
+
+/* --- 外层包装器：负责位置和逃跑 --- */
+.fish-wrapper {
+    position: absolute;
+    /* 平时游回去的速度：慢 (2秒) */
+    transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: auto; /* 开启鼠标检测 */
+}
+
+/* 【新增】鼠标悬停时，所有鱼稍微变大一点，提示可点击 */
+.fish-wrapper:hover {
+    cursor: pointer;
+    /* 这里用 brightness 稍微提亮一点 */
+    filter: brightness(1.2); 
+    z-index: 100; /* 悬停时浮到最上面 */
+}
+
+/* 当加上 .scared 类名时，速度变快 (0.2秒) */
+.fish-wrapper.scared {
+    transition: transform 0.2s ease-out;
+}
+
+/* --- 内层图片：负责闲逛游泳 --- */
+.fish-body {
+    display: block;
+    /* 应用游泳动画：时长随机(在JS里微调)，无限循环，平滑往返 */
+    animation: idleSwim 3s ease-in-out infinite alternate;
+}
+
+/* 定义游泳动画：轻微的上下浮动和前后游动 */
+@keyframes idleSwim {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        /* 往右游20px，往上浮15px，模拟水流感 */
+        transform: translate(20px, -15px);
+    }
+}
+
+/* ==========================================
+   新增：深海鱼群呼吸灯特效
+   ========================================== */
+
+/* 定义呼吸发光动画：从微亮到稍微更亮，模拟生物荧光 */
+@keyframes secretGlow {
+    0% {
+        /* 初始状态：稍微有一点点亮，带一点青色光晕 */
+        filter: brightness(1.1) drop-shadow(0 0 2px rgba(0, 255, 255, 0.3));
+    }
+    100% {
+        /* 呼吸状态：变亮，光晕变大 */
+        filter: brightness(1.4) drop-shadow(0 0 8px rgba(0, 255, 255, 0.6));
+    }
+}
+
+/* 鼠标悬停时的加强版高亮 */
+/* --- 外层包装器：负责位置和逃跑 --- */
+.fish-wrapper {
+    position: absolute;
+    /* 平时游回去的速度：慢 (2秒) */
+    transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: auto; 
+}
+
+/* 【修改点】逃跑时的速度：由 0.2s 改为 0.8s */
+/* 这样鱼是缓缓游开，而不是瞬间弹开，你完全有时间点击它 */
+.fish-wrapper.scared {
+    transition: transform 0.8s ease-out; 
+}
+
+/* 保持之前的高亮效果 */
+.fish-wrapper:hover {
+    cursor: pointer;
+    filter: brightness(1.2); 
+    z-index: 100;
+}
+/* ==========================================
+   底部“返回首页”按钮 (Flex布局防抖终极版)
+   ========================================== */
+
+/* 1. 外层容器：负责定在海底，且铺满宽度 */
+.bottom-btn-container {
+    position: absolute;
+    top: 8200px; /* 深度位置 */
+    left: 0;
+    width: 100%; /* 占满屏幕宽度 */
+    height: 100px; /* 给点高度 */
+    
+    /* 使用 Flex 布局让内部按钮自然居中，这是最稳的居中方式 */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    
+    z-index: 200;
+    pointer-events: none; /* 容器本身不挡鼠标，只有按钮挡 */
+}
+
+/* 2. 按钮本体：不再负责定位，只负责长相 */
+.return-home-btn {
+    /* 恢复默认定位，杜绝抖动根源 */
+    position: relative; 
+    transform: none !important; /* 强制去掉任何位移 */
+    pointer-events: auto; /* 恢复点击 */
+    
+    display: inline-block;
+    padding: 15px 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #00f2fe; 
+    text-decoration: none;
+    letter-spacing: 2px;
+    
+    background: rgba(0, 20, 40, 0.6);
+    border: 2px solid #00f2fe;
+    border-radius: 50px;
+    
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3), inset 0 0 10px rgba(0, 242, 254, 0.1);
+    backdrop-filter: blur(5px);
+    
+    /* 只过渡颜色和阴影，不碰位置属性 */
+    transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.return-home-btn span {
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* 3. 悬停效果：只放大，不位移 */
+.return-home-btn:hover {
+    background: #00f2fe;
+    color: #000; 
+    box-shadow: 0 0 50px rgba(0, 242, 254, 0.8); 
+    
+    /* 悬停时稍微放大一点点 */
+    transform: scale(1.05) !important; 
+}
+
+.return-home-btn:hover span {
+    transform: translateY(-5px); /* 箭头动效 */
+}

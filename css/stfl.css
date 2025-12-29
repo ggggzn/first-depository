@@ -1,0 +1,207 @@
+/* =========================================
+   生态分类页专用样式 (紧凑版 + 视频融合)
+   ========================================= */
+
+/* 1. 基础设置与平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+/* --- 修复“头部两侧变紫”和“底部白边”的完美方案 --- */
+html, body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    
+    /* 【修改点】将 101px 改回 100px，让颜色在 100px 处直接切换，不要过渡 */
+    background: linear-gradient(to bottom, #fff 0px, #fff 100px, #1a0033 100px, #1a0033 100%);
+    
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+
+/* 2. Header 微调 */
+.header1 {
+    position: relative;
+    
+    /* 【关键修改】把原来的 border-bottom: 2px solid ... 删掉或改为 none */
+    border-bottom: none; 
+    
+    height: 100px;
+    background: #fff;
+    z-index: 100;
+    /* 稍微加一点阴影来区分头部和内容，比实线更柔和 (可选) */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.header1 .logo1 { float: left; width: 100px; height: 100px; }
+.header1 .logo1 img { width: 100%; height: 100%; border-radius: 50%; }
+.header1 .poetry div { position: absolute; top: 40px; left: 900px; }
+.header1 .poetry p { font-size: 16px; color: #006994; font-family: 'KaiTi'; font-weight: bold; }
+
+/* 3. 右侧悬浮深度计 */
+.depth-gauge {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+}
+.depth-gauge .line {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 2px;
+    background: rgba(255, 255, 255, 0.5); z-index: -1;
+}
+.depth-gauge ul { list-style: none; position: relative; }
+.depth-gauge li { margin-bottom: 40px; text-align: right; }
+.depth-gauge a {
+    display: inline-block; padding: 5px 15px;
+    background: rgba(0, 0, 0, 0.6); color: #fff;
+    border-radius: 20px; font-size: 12px;
+    transition: all 0.3s; border: 1px solid rgba(255,255,255,0.3);
+}
+.depth-gauge a:hover { background: #00bbff; transform: scale(1.1); }
+
+/* 4. 分区通用布局 (【修改点】间距调小) */
+.ocean-zone {
+    width: 100%;
+    /* 从 100px 减小到 50px，让页面更紧凑 */
+    padding: 50px 0; 
+    overflow: hidden;
+}
+
+.zone-header { text-align: center; margin-bottom: 40px; } /* 标题间距也微调 */
+.zone-header h1 { font-size: 42px; margin-bottom: 10px; font-weight: bold; }
+
+.depth-tag {
+    display: inline-block; padding: 5px 20px;
+    border-radius: 50px; font-size: 18px; font-weight: bold; border: 2px solid;
+}
+
+/* =========================================================
+   5. 区域配色 (保持无缝渐变)
+   ========================================================= */
+
+/* --- 浅水区 (0-200m) --- */
+.zone-shallow {
+    /* 结束色 #29b6f6 */
+    background: linear-gradient(180deg, #e1f5fe 0%, #29b6f6 100%);
+    color: #01579b;
+    margin-bottom: -1px;
+}
+.zone-shallow .depth-tag { border-color: #01579b; background: rgba(255,255,255,0.5); }
+.zone-shallow .highlight { color: #d84315; font-weight: bold; }
+
+/* --- 【新增】过渡视频区域样式 --- */
+.transition-video {
+    /* 关键：背景色必须是浅水区结尾和暮光区开始的颜色 #29b6f6 */
+    background-color: #29b6f6;
+    padding: 20px 0 40px 0; /* 给视频留点空间 */
+    text-align: center;
+    margin-bottom: -1px; /* 防止缝隙 */
+}
+
+.video-box {
+    width: 800px;
+    height: 450px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border: 5px solid rgba(255,255,255,0.3); /* 半透明边框装饰 */
+}
+
+.video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-desc {
+    color: #fff;
+    margin-top: 15px;
+    font-size: 16px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+}
+
+/* --- 暮光区 (200-1000m) --- */
+.zone-twilight {
+    /* 开始色 #29b6f6 */
+    background: linear-gradient(180deg, #29b6f6 0%, #0d47a1 100%);
+    color: #e1f5fe;
+    margin-bottom: -1px;
+}
+.zone-twilight .depth-tag { border-color: #81d4fa; background: rgba(0,0,0,0.2); }
+.zone-twilight .highlight { color: #ffeb3b; font-weight: bold; }
+
+/* --- 深海区 (1000m+) --- */
+.zone-deep {
+    background: linear-gradient(180deg, #0d47a1 0%, #000000 40%, #1a0033 100%);
+    color: #d1c4e9;
+    padding-bottom: 150px;
+}
+.zone-deep .depth-tag {
+    border-color: #7c4dff; background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 10px #7c4dff;
+}
+.zone-deep h1 { text-shadow: 0 0 10px #6200ea, 0 0 20px #6200ea; }
+
+/* ========================================================= */
+
+/* 6. 图文混排布局 */
+.zone-intro {
+    margin-bottom: 40px; /* 减小间距 */
+    display: flex; align-items: center; justify-content: space-between;
+}
+
+.text-box {
+    width: 500px; line-height: 2; font-size: 16px; text-align: justify;
+}
+.text-box p { text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.text-box.center { width: 800px; margin: 0 auto; text-align: center; }
+
+.img-box {
+    width: 600px; height: 350px;
+    border-radius: 15px; overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    transition: transform 0.5s;
+}
+.img-box img { width: 100%; height: 100%; object-fit: cover; }
+.img-box:hover { transform: scale(1.02); }
+
+.left { float: left; }
+.right { float: right; }
+
+/* 7. 生物卡片 */
+.creature-cards {
+    display: flex; justify-content: space-between; flex-wrap: wrap;
+}
+.creature-cards li {
+    width: 280px; background: #fff; border-radius: 12px;
+    overflow: hidden; margin-bottom: 20px;
+    transition: all 0.4s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.creature-cards img { width: 100%; height: 180px; object-fit: cover; }
+.c-info { padding: 15px; text-align: center; }
+.c-info h4 { margin-bottom: 8px; font-size: 18px; color: #333; }
+.c-info p { font-size: 13px; color: #666; line-height: 1.5; }
+.creature-cards li:hover { transform: translateY(-10px); }
+
+/* 暮光区/深海区卡片适配 */
+.zone-twilight .creature-cards li {
+    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);
+}
+.zone-twilight .c-info h4 { color: #fff; }
+.zone-twilight .c-info p { color: #ddd; }
+
+.glow-mode li {
+    background: rgba(0, 0, 0, 0.7); border: 1px solid #7c4dff;
+    box-shadow: 0 0 10px rgba(124, 77, 255, 0.2);
+}
+.glow-mode .c-info h4 { color: #b388ff; }
+.glow-mode .c-info p { color: #d1c4e9; }
+.glow-mode li:hover {
+    box-shadow: 0 0 30px rgba(124, 77, 255, 0.8);
+    border-color: #fff; transform: translateY(-10px) scale(1.02);
+}
+

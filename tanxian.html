@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深海探险之旅</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="ui-layer">
+        <div id="depth-gauge">
+            当前深度: <span id="depth-text">0</span> m
+        </div>
+    </div>
+
+    <div class="shadow-overlay"></div>
+
+    <img src="tanxianimages/qianshuit.png" alt="潜水艇" id="submarine">
+
+<div id="ocean-container">
+        
+        <div id="school-of-fish"></div>
+
+        <div class="fish-item" style="top: 1800px; left: 10%; z-index: 10;">
+             <div class="text-label">进入：暮光区 (Twilight Zone)</div>
+        </div>
+        <div class="fish-item" style="top: 4500px; left: 10%; z-index: 10;">
+             <div class="text-label" style="color: #a8e6cf;">警告：进入深渊区 (Abyssal Zone)</div>
+        </div>
+        <div class="fish-item" style="top: 7600px; width: 100%; text-align: center; z-index: 20;">
+            <h1 style="color: white; text-shadow: 0 0 20px black;">已到达海底</h1>
+        </div>
+
+<div class="bottom-btn-container">
+            <a href="index.html" class="return-home-btn">
+                <span>▲</span> 紧急上浮 / 返回首页
+            </a>
+        </div>
+
+    </div>
+
+    </div>
+
+    <div id="bubbles-container"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
